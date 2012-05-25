@@ -2,25 +2,12 @@
 #include <sys/iosupport.h>
 #include <stdint.h>
 
-extern uint32_t ebss, sbss, edata, sdata, etext;
 
 extern void __libexword_exit(int status);
 extern void * __libexword_sbrk_r(struct _reent *ptr, ptrdiff_t incr);
 extern void * __libexword_malloc(size_t size);
 extern void __libexword_free(void *ptr);
 
-static void __copy_data()
-{
-	uint32_t *bss, *data;
-	uint32_t *text = &etext;
-	for (bss = &sbss; bss < &ebss; ++bss) {
-		*bss = 0;
-	}
-
-	for (data = &sdata; data < &edata; ++data) {
-		*data = *text++;
-	}
-}
 
 static void __init_syscall_array()
 {
@@ -35,15 +22,15 @@ static void __init_syscall_array()
 	__syscalls.gettod_r = NULL;
 }
 
-int __libc_cleanup_hook(void * ptr) {
+int __libc_cleanup_hook(void * ptr)
+{
 	__console_cleanup();
 
 	return -3;
 }
 
-int __libc_init_hook(void *ptr) {
-
-	__copy_data();
+int __libc_init_hook(void *ptr)
+{
 
 	__init_syscall_array();	
 
