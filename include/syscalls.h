@@ -28,8 +28,8 @@ DECLARE_SYSCALL(int, sys_open, const char*, int);
 DECLARE_SYSCALL(int, sys_close, int);
 DECLARE_SYSCALL(int, sys_get_filesize, int);
 DECLARE_SYSCALL(int, sys_seek, int, int, int);
-DECLARE_SYSCALL(int, sys_read, int, char*, int);
-DECLARE_SYSCALL(int, sys_write, int, const char*, int);
-DECLARE_SYSCALL(int, sys_write2, int, const char*, int, int);
+DECLARE_SYSCALL(int, sys_read, int, void*, int);
+DECLARE_SYSCALL(int, sys_write, int, const void*, int);
+DECLARE_SYSCALL(int, sys_write2, int, const void*, int, int);
 
 #endif
