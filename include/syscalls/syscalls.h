@@ -3,6 +3,8 @@
 
 #include <asm.h>
 
+#define DECLARE_SYSCALL(rettype, funcname, ...) rettype funcname(__VA_ARGS__);
+
 #define FILE_RD   0x1
 #define FILE_WR   0x2
 #define FILE_RDWR 0x3

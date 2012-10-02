@@ -9,35 +9,52 @@ ifeq ($(strip $(DEVKITSH4)),)
 $(error "Please set DEVKITSH4 in your environment. export DEVKITSH4=<path to>devkitSH4")
 endif
 
+
+ifeq (,$(filter _%,$(notdir $(CURDIR))))
+include target.mk
+else
+
 include $(DEVKITSH4)/exword_rules
 
+INCLUDES	:= -I$(CURDIR)/../../include
 
-TARGET		:= libdataplus
+CFLAGS  :=	$(INCLUDES) -m4-nofpu -O2 -ffunction-sections
 
-INCLUDES	:= -I../include
+ifeq (libdataplus,$(TARGET))
 
-VPATH :=	../src \
-		../src/syscall \
-		../src/libc
+VPATH :=	$(SRCDIR)/util \
+		$(SRCDIR)/util/fixedptc \
+		$(SRCDIR)/syscall \
+		$(SRCDIR)/libc
 
-OBJECTS :=	file.o string.o misc.o sbrk.o _exit.o system.o malloc.o console.o fs.o
+UTIL	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/util/*.c)))
+FIXEDPT	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/util/fixedptc/*.c)))
+LIBC	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/libc/*.c)))
+SYSCALL	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/syscall/*.c)))
+OBJECTS :=	$(UTIL) $(FIXEDPT) $(SYSCALL) $(LIBC)
 
-CFLAGS  :=	$(INCLUDES) -O2
+else
+ifeq (libsh4a,$(TARGET))
 
-.PHONY: clean library install
+VPATH :=	$(SRCDIR)/cpu/sh4a \
+		$(SRCDIR)/cpu/sh4a/input \
 
-library:
-	@[ -d build ] || mkdir -p build
-	$(MAKE) $(TARGET).a -C build -f $(CURDIR)/Makefile
+SH4A	   	:= $(patsubst %.s,%.o, $(notdir $(wildcard $(SRCDIR)/cpu/sh4a/*.s)))
+INPUTDEV	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/cpu/sh4a/input/*.c)))
+OBJECTS :=	$(SH4A) $(INPUTDEV)
+
+else
+ifeq (libgraphics,$(TARGET))
+
+VPATH :=	$(SRCDIR)/graphics \
+
+GRAPHICS	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/graphics/*.c)))
+OBJECTS :=	$(GRAPHICS)
+
+endif
+endif
+endif
 
 $(TARGET).a: $(OBJECTS)
 
-install:
-	@mkdir -p $(DEVKITPRO)/$(TARGET)/lib
-	@cp -frv include $(DEVKITPRO)/$(TARGET)
-	@cp -frv build/$(TARGET).a $(DEVKITPRO)/$(TARGET)/lib
-
-clean:
-	@echo clean ...
-	@rm -fr build
-
+endif

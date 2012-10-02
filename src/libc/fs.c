@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <sys/iosupport.h>
-#include <syscalls.h>
+#include <syscalls/syscalls.h>
 
 extern const devoptab_t *devoptab_list[STD_MAX];
 

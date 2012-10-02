@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/iosupport.h>
-#include <syscalls.h>
+#include <syscalls/syscalls.h>
 
 int __console_write(struct _reent *r,int fd,const char *ptr,size_t len);
 int __console_close(int fd);
