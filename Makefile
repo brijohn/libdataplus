@@ -30,7 +30,7 @@ VPATH :=	$(SRCDIR)/util \
 UTIL	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/util/*.c)))
 FIXEDPT	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/util/fixedptc/*.c)))
 LIBC	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/libc/*.c)))
-SYSCALL	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/syscall/*.c)))
+SYSCALL	   	:= $(patsubst %.c,%.o, $(notdir $(wildcard $(SRCDIR)/syscall/*.c))) _exit.o
 OBJECTS :=	$(UTIL) $(FIXEDPT) $(SYSCALL) $(LIBC)
 
 else
