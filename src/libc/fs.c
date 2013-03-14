@@ -219,7 +219,7 @@ ssize_t __fs_write(struct _reent *r, int fd, const char *buf, size_t count)
 		f->size = sys_get_filesize(f->fd);
 	}
 	ret = sys_write2(f->fd, buf, count, offset);
-	f->offset + ret;
+	f->offset += ret;
 	f->size = sys_get_filesize(f->fd);
 	return ret;
 }
@@ -235,7 +235,7 @@ ssize_t __fs_read(struct _reent *r, int fd, char *buf, size_t count)
 		size_t rdlen = f->size - offset < count ? f->size - offset : count;
 		sys_seek(f->fd, f->offset, 0);
 		ret = sys_read(f->fd, buf, rdlen);
-		f->offset + ret;
+		f->offset += ret;
 	}
 	return ret;
 }
