@@ -33,5 +33,8 @@ DECLARE_SYSCALL(int, sys_seek, int, int, int);
 DECLARE_SYSCALL(int, sys_read, int, void*, int);
 DECLARE_SYSCALL(int, sys_write, int, const void*, int);
 DECLARE_SYSCALL(int, sys_write2, int, const void*, int, int);
+DECLARE_SYSCALL(int, sys_findfirst, const char *, int *, char *, unsigned long *);
+DECLARE_SYSCALL(int, sys_findnext, int, char *, unsigned long *);
+DECLARE_SYSCALL(int, sys_findclose, int);
 
 #endif
