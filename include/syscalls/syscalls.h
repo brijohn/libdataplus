@@ -28,6 +28,7 @@ DECLARE_SYSCALL(int, sys_create, const char*, int);
 DECLARE_SYSCALL(int, sys_delete, const char*);
 DECLARE_SYSCALL(int, sys_open, const char*, int);
 DECLARE_SYSCALL(int, sys_close, int);
+DECLARE_SYSCALL(int, sys_closeall);
 DECLARE_SYSCALL(int, sys_get_filesize, int);
 DECLARE_SYSCALL(int, sys_seek, int, int, int);
 DECLARE_SYSCALL(int, sys_read, int, void*, int);
