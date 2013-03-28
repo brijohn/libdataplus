@@ -7,6 +7,7 @@ DEFINE_SYSCALL(0x32, sys_totaldiskspace);
 DEFINE_SYSCALL(0x33, sys_freediskspace);
 DEFINE_SYSCALL(0x34, sys_create);
 DEFINE_SYSCALL(0x35, sys_delete);
+DEFINE_SYSCALL(0x36, sys_rename);
 DEFINE_SYSCALL(0x37, sys_open);
 DEFINE_SYSCALL(0x38, sys_close);
 DEFINE_SYSCALL(0x39, sys_closeall);

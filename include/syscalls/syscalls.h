@@ -26,6 +26,7 @@ DECLARE_SYSCALL(int, sys_totaldiskspace, char*, unsigned long*);
 DECLARE_SYSCALL(int, sys_freediskspace, char*, unsigned long*);
 DECLARE_SYSCALL(int, sys_create, const char*, int);
 DECLARE_SYSCALL(int, sys_delete, const char*);
+DECLARE_SYSCALL(int, sys_rename, const char*, const char*);
 DECLARE_SYSCALL(int, sys_open, const char*, int);
 DECLARE_SYSCALL(int, sys_close, int);
 DECLARE_SYSCALL(int, sys_closeall);
