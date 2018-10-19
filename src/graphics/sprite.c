@@ -1,5 +1,6 @@
 
 #include <graphics/sprite.h>
+#include <graphics/drawing.h>
 
 #ifndef MAX
 #define MAX(a,b)    (((a) > (b)) ? (a) : (b))

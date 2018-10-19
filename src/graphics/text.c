@@ -1,5 +1,6 @@
-
 #include <graphics/text.h>
+#include <graphics/color.h>
+#include <graphics/drawing.h>
 
 const unsigned char english8x12[] = {
 		/* ' ' const unsigned charwidth: 8 */

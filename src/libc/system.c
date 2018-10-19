@@ -8,6 +8,10 @@ extern void * __libexword_sbrk_r(struct _reent *ptr, ptrdiff_t incr);
 extern void * __libexword_malloc(size_t size);
 extern void __libexword_free(void *ptr);
 
+extern void __console_init();
+extern void __console_cleanup();
+
+extern void __fs_init();
 
 static void __init_syscall_array()
 {

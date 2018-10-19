@@ -1,5 +1,6 @@
 
 #include <graphics/drawing.h>
+#include <graphics/color.h>
 #include <graphics/lcdc.h>
 
 uint16_t get_pixel(uint16_t x, uint16_t y)

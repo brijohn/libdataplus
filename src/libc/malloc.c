@@ -1,5 +1,6 @@
 
 #include <stddef.h>
+#include <unistd.h>
 
 #define NALLOC 	512
 

@@ -100,7 +100,7 @@ char* __path_to_native(const char* path)
 }
 
 
-int __fs_init()
+void __fs_init()
 {
 	devoptab_list[4] = &dotab_drv;
 	devoptab_list[5] = &dotab_crd;
