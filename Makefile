@@ -19,6 +19,7 @@ include $(DEVKITSH4)/exword_rules
 INCLUDES	:= -I$(CURDIR)/../../include
 
 CFLAGS  :=	$(INCLUDES) -m4-nofpu -O2 -ffunction-sections
+ASFLAGS :=	-m4-nofpu
 
 ifeq (libdataplus,$(TARGET))
 
